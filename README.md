@@ -1,5 +1,5 @@
 # Sensor Cube
-Documentation, design and example code for the Sensor Cube used for teaching at the Robotics Lab of the University of Würzburg.
+Documentation, design and example code for the Sensor Cube used for teaching at the Robotics Lab of the Julius Maximilian University of Würzburg.
 * The sensors can be used without specialized drivers. The stereo camera behaves like a webcam. The Arduino offers a virtual serial port over USB with sensor messages in JSON format.
 * Contact: Michael Bleier (michael.bleier@uni-wuerzburg.de)
 

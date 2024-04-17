@@ -3,11 +3,9 @@ import time
 import json
 import os
 
-# load config file (same directory as this file)
 configFile = open(os.path.dirname(os.path.abspath(__file__)) + '/config.json')
 config = json.load(configFile)
 
-# open serial port
 sensorcube = serial.Serial(port=config["serial_port"], baudrate=config["serial_baudrate"])
 
 # wait for full second

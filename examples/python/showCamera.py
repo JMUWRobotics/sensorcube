@@ -23,7 +23,7 @@ def showWebcam():
         # print size of image
         height, width = img.shape[:2]
         print("Image " + str(imageSeq) + " received with size " + str(width) + " x " + str(height) + ".")
-        imageSeq = imageSeq +1
+        imageSeq = imageSeq + 1
 
         # process key press
         key = cv2.waitKey(1)

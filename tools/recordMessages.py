@@ -20,18 +20,14 @@ for m in args.message:
         messageString = messageString + ','
     messageString = messageString + '"' + str(m) + '"'
 
-# load config file (same directory as this file)
 configFile = open(os.path.dirname(os.path.abspath(__file__)) + '/config.json')
 config = json.load(configFile)
 
-# open serial port
 sensorcube = serial.Serial(port=config["serial_port"], baudrate=config["serial_baudrate"])
 
-# enable messages
 command = '{"messages":[' + messageString + ']}\r\n';
 sensorcube.write(bytes(command, 'utf-8'))
 
-# clear buffer
 line = sensorcube.readline().decode('utf-8').rstrip()
 
 while True:

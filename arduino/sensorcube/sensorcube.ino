@@ -346,8 +346,6 @@ void setup()
   imu.initSensor();
   imu.setOperationMode(OPERATION_MODE_NDOF);
   imu.setUpdateMode(MANUAL);
-  imu.writeAccelConfig(ACCEL_RANGE_2G, ACCEL_BW_1000HZ, ACCEL_NORMAL);
-  imu.updateAccelConfig();
 
   Wire1.begin();
   tof.begin();

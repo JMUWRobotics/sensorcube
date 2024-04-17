@@ -2,6 +2,7 @@ import os
 import serial 
 import json
 import argparse
+import time
 
 parser = argparse.ArgumentParser(description='Print and record messages.')
 parser.add_argument('-m', '--message', dest='message', action='append', type=str, help='Message type, e.g., "heartbeat".', required=True)
@@ -29,6 +30,9 @@ sensorcube = serial.Serial(port=config["serial_port"], baudrate=config["serial_b
 # enable messages
 command = '{"messages":[' + messageString + ']}\r\n';
 sensorcube.write(bytes(command, 'utf-8'))
+
+# clear buffer
+line = sensorcube.readline().decode('utf-8').rstrip()
 
 while True:
     try:

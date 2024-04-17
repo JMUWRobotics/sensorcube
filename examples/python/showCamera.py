@@ -8,7 +8,11 @@ def showWebcam():
     config = json.load(configFile)
     
     # open and configure video capture
-    cam = cv2.VideoCapture(config["camera_index"], cv2.CAP_V4L)
+    cam = None
+    if os.name == 'nt':
+        cam = cv2.VideoCapture(config["camera_index"])
+    else:
+        cam = cv2.VideoCapture(config["camera_index"], cv2.CAP_V4L)
     cam.set(cv2.CAP_PROP_FRAME_WIDTH, config["camera_width"])
     cam.set(cv2.CAP_PROP_FRAME_HEIGHT, config["camera_height"])
     fourcc = cv2.VideoWriter_fourcc('B', 'G', 'R', '3')

@@ -1,7 +1,13 @@
+import os
 import serial 
-import time 
+import json
 
-sensorcube = serial.Serial(port='/dev/ttyACM0', baudrate=921600)
+# load config file (same directory as this file)
+configFile = open(os.path.dirname(os.path.abspath(__file__)) + '/config.json')
+config = json.load(configFile)
+
+# open serial port
+sensorcube = serial.Serial(port=config["serial_port"], baudrate=config["serial_baudrate"])
 
 while True:
     print(sensorcube.readline().decode('utf-8').rstrip())

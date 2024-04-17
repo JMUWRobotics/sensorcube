@@ -1,28 +1,40 @@
 import cv2
+import os
+import json
 
 def showWebcam():
-    seq = 0
-    cam = cv2.VideoCapture(1, cv2.CAP_V4L)
-    cam.set(cv2.CAP_PROP_FRAME_WIDTH, 1600)
-    cam.set(cv2.CAP_PROP_FRAME_HEIGHT, 600)
-    cam.set(cv2.CAP_PROP_FPS, 30)
+    # load config file (same directory as this file)
+    configFile = open(os.path.dirname(os.path.abspath(__file__)) + '/config.json')
+    config = json.load(configFile)
+    
+    # open and configure video capture
+    cam = cv2.VideoCapture(config["camera_index"], cv2.CAP_V4L)
+    cam.set(cv2.CAP_PROP_FRAME_WIDTH, config["camera_width"])
+    cam.set(cv2.CAP_PROP_FRAME_HEIGHT, config["camera_height"])
     fourcc = cv2.VideoWriter_fourcc('B', 'G', 'R', '3')
     cam.set(cv2.CAP_PROP_FOURCC, fourcc)
+
+    imageSeq = 0
+    fileSeq = 0
     while True:
+        # read and display image
         ret_val, img = cam.read()
         cv2.imshow('Stereo Image', img)
+
+        # print size of image
         height, width = img.shape[:2]
-        print("Image: ", width, "x", height)
+        print("Image " + str(imageSeq) + " received with size " + str(width) + " x " + str(height) + ".")
+        imageSeq = imageSeq +1
+
+        # process key press
         key = cv2.waitKey(1)
-        if key == 27: 
-            break  # esc to quit
-        elif key == 32:
-            cv2.imwrite("stereo" + str(seq).zfill(3) + ".png", img)
-            left = img[0:600,0:800]
-            cv2.imwrite("left" + str(seq).zfill(3) + ".png", left)
-            right = img[0:600,800:1600]
-            cv2.imwrite("right" + str(seq).zfill(3) + ".png", right)
-            seq = seq + 1
+        if key == 27: # esc to quit
+            break
+        elif key == 32: # space to save image
+            print("Saving image " + "\"stereo" + str(fileSeq).zfill(3) + ".png\".")
+            cv2.imwrite("stereo" + str(fileSeq).zfill(3) + ".png", img)
+            fileSeq = fileSeq + 1
+
     cv2.destroyAllWindows()
 
 def main():

@@ -5,10 +5,7 @@ import matplotlib.pyplot as plt
 import os
 import multiprocessing
 
-queue = multiprocessing.Queue(maxsize=100)
-shutdownEvent = multiprocessing.Event()
-
-def readSerialData():
+def readSerialData(queue, shutdownEvent):
     configFile = open(os.path.dirname(os.path.abspath(__file__)) + '/config.json')
     config = json.load(configFile)
 
@@ -24,7 +21,9 @@ def readSerialData():
         queue.put(s)
 
 if __name__ == '__main__':
-    serialProcess = multiprocessing.Process(target=readSerialData)
+    queue = multiprocessing.Queue(maxsize=100)
+    shutdownEvent = multiprocessing.Event()
+    serialProcess = multiprocessing.Process(target=readSerialData, args=(queue, shutdownEvent))
     serialProcess.start()
 
     fig = plt.figure("IMU Plot")

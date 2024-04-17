@@ -14,3 +14,6 @@ Documentation, design and example code for the Sensor Cube used for teaching at 
   * Bosch BNO055 Inertial Measurement Unit (https://www.bosch-sensortec.com/products/smart-sensor-systems/bno055/, https://docs.arduino.cc/hardware/9-axis-motion-shield/)
 * Red Line Laser 650nm (https://www.laserfuchs.de/p/70134933)
 * Calibration Board
+
+## Known Issues
+* The Arduino UNO R4 WiFi uses the internal oscillator instead of an external crystal as a clock source for the Real Time Clock (RTC). This causes significant time drift.

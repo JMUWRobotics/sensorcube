@@ -15,20 +15,23 @@ command = '{"messages":["heartbeat"]}\r\n';
 sensorcube.write(bytes(command, 'utf-8'))
 
 while True:
-    # read one line from serial and parse json
     try:
-        line = sensorcube.readline().decode('utf-8').rstrip()
-        data = json.loads(line)
-    except:
-        continue
+        # read one line from serial and parse json
+        try:
+            line = sensorcube.readline().decode('utf-8').rstrip()
+            data = json.loads(line)
+        except:
+            continue
 
-    if not "msg" in data:
-        continue
+        if not "msg" in data:
+            continue
 
-    # process heartbeat messages
-    if data["msg"] == "heartbeat":
-        stamp = data["stamp"]
-        seq = data["seq"]
-        print("Received heartbeat at time " + str(stamp) + " with sequence number " + str(seq) + ".")
+        # process heartbeat messages
+        if data["msg"] == "heartbeat":
+            stamp = data["stamp"]
+            seq = data["seq"]
+            print("Received heartbeat at time " + str(stamp) + " with sequence number " + str(seq) + ".")
 
-    time.sleep(1)
+        time.sleep(1)
+    except KeyboardInterrupt:
+        break

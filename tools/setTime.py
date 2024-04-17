@@ -21,4 +21,7 @@ print("Set time " + str(t) + ".")
 sensorcube.write(bytes(command, 'utf-8'))
 
 while True:
-    print(sensorcube.readline().decode('utf-8').rstrip())
+    try:
+        print(sensorcube.readline().decode('utf-8').rstrip())
+    except KeyboardInterrupt:
+        break

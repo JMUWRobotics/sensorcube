@@ -10,4 +10,7 @@ config = json.load(configFile)
 sensorcube = serial.Serial(port=config["serial_port"], baudrate=config["serial_baudrate"])
 
 while True:
-    print(sensorcube.readline().decode('utf-8').rstrip())
+    try:
+        print(sensorcube.readline().decode('utf-8').rstrip())
+    except KeyboardInterrupt:
+        break

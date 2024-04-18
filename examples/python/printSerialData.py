@@ -6,6 +6,8 @@ import json
 configFile = open(os.path.dirname(os.path.abspath(__file__)) + '/../../config.json')
 config = json.load(configFile)
 
+print("Opening port " + str(config["serial_port"]) + " with baudrate " + str(config["serial_baudrate"]) + ".")
+
 # open serial port
 sensorcube = serial.Serial(port=config["serial_port"], baudrate=config["serial_baudrate"])
 

@@ -3,7 +3,7 @@ import time
 import json
 import os
 
-configFile = open(os.path.dirname(os.path.abspath(__file__)) + '/config.json')
+configFile = open(os.path.dirname(os.path.abspath(__file__)) + '/../config.json')
 config = json.load(configFile)
 
 sensorcube = serial.Serial(port=config["serial_port"], baudrate=config["serial_baudrate"])

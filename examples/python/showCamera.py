@@ -4,7 +4,7 @@ import json
 
 def showWebcam():
     # load config file (same directory as this file)
-    configFile = open(os.path.dirname(os.path.abspath(__file__)) + '/config.json')
+    configFile = open(os.path.dirname(os.path.abspath(__file__)) + '/../../config.json')
     config = json.load(configFile)
     
     # open and configure video capture

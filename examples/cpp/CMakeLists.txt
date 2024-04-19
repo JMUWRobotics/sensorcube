@@ -1,9 +1,14 @@
 cmake_minimum_required(VERSION 3.11)
-
 project(SensorCubeExamples)
-
-
 include(FetchContent)
+
+
+set(CMAKE_CXX_STANDARD 11)
+if(NOT CMAKE_BUILD_TYPE)
+    message(STATUS "Setting build type to RelWithDebInfo")
+    set(CMAKE_BUILD_TYPE "RelWithDebInfo")
+endif()
+
 
 # OpenCV
 find_package(OpenCV REQUIRED)
@@ -18,7 +23,7 @@ FetchContent_Declare(eigen URL https://gitlab.com/libeigen/eigen/-/archive/3.4.0
 FetchContent_MakeAvailable(eigen)
 
 # Asio
-FetchContent_Declare(asio URL https://github.com/chriskohlhoff/asio/archive/refs/tags/asio-1-18-1.tar.gz URL_HASH MD5=41543b58e89fdd1b2134c94eed7763b4)
+FetchContent_Declare(asio URL https://github.com/chriskohlhoff/asio/archive/refs/tags/asio-1-30-2.tar.gz URL_HASH MD5=5ae7dc2b2ee13bc49144f2f867eab15c)
 FetchContent_MakeAvailable(asio)
 FetchContent_GetProperties(asio)
 if(NOT asio_POPULATED)

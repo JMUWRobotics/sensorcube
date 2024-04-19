@@ -4,6 +4,7 @@
 #include <nlohmann/json.hpp>
 #include <iostream>
 #include <fstream>
+#include <csignal>
 
 using json = nlohmann::json;
 
@@ -28,6 +29,10 @@ int main(int argc, char *argv[])
     asio::serial_port sensorcube(ctx);
     sensorcube.open(config["serial_port"].get<std::string>());
     sensorcube.set_option(asio::serial_port::baud_rate(config["serial_baudrate"].get<int>()));
+    sensorcube.set_option(asio::serial_port::flow_control(asio::serial_port::flow_control::none));
+    sensorcube.set_option(asio::serial_port::character_size(8));
+    sensorcube.set_option(asio::serial_port::parity(asio::serial_port::parity::none));
+    sensorcube.set_option(asio::serial_port::stop_bits(asio::serial_port::stop_bits::one));
 
     asio::streambuf buf;
     asio::read_until(sensorcube, buf, "\n");

@@ -51,7 +51,7 @@ print('Loaded ' + str(len(t)) + ' IMU messages.')
 
 # compute norm of the acceleration vector
 a = np.sqrt(ax*ax + ay*ay + az*az)
-a = a - np.mean(a)
+#a = a - np.mean(a)
 
 x = a
 sr = 100 # sampling rate

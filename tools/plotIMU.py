@@ -47,13 +47,13 @@ while True:
 subplot1.clear()
 subplot1.plot(t,ax,'r',t,ay,'g',t,az,'b', linewidth=0.5)
 subplot1.set(xlabel="Time in s",ylabel="Acceleration in m/s^2")
-subplot1.set(ylim=[-10,10])
+subplot1.set(ylim=[-12,12])
 subplot1.legend(["X", "Y", "Z"], loc='upper right')
 
 subplot2.clear()
 subplot2.plot(t,wx,'r',t,wy,'g',t,wz,'b', linewidth=0.5)
 subplot2.set(xlabel="Time in s",ylabel="Angular velocity in deg/s")
-subplot2.set(ylim=[-90,90])
+subplot2.set(ylim=[-100,100])
 subplot2.legend(["X", "Y", "Z"], loc='upper right')
 
 plt.show()

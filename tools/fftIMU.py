@@ -79,6 +79,6 @@ plt.subplot(122)
 plt.stem(freq, np.abs(X), linefmt='b', markerfmt=" ", basefmt="-b")
 plt.xlabel('Frequency in Hz')
 plt.ylabel('FFT Amplitude |X(freq)|')
-plt.xlim(0, sr / 2)
+plt.xlim(0, sr)
 
 plt.show()

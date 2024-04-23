@@ -21,5 +21,33 @@ Documentation, design and example code for the Sensor Cube used for teaching at 
 * Bosch BMP280 pressure and temperature sensor: https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp280-ds001.pdf
 * Bosch BNO055 Inertial Measurement Unit: https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bno055-ds000.pdf
 
+## Configuration
+In the root directory is a configuration file _"config.json"_. Please make sure to set _"serial\_port"_ (typically _"/dev/ttyACM[0-9]"_ on Linux or _"COM[1-9]"_ on Windows) and the correct _"camera\_index"_ for the stereo camera.
+
+```
+"config.json":
+  {
+    "serial_port" : "/dev/ttyACM0",
+    "serial_baudrate" : 921600,
+    "camera_index" : 0,
+    "camera_width" : 1600,
+    "camera_height": 800
+  }
+```
+
+The Python examples load this file relative to the _*.py_ source files. For the C++ examples CMake sets the path relative to the project source dir and bakes the path in the executables.
+
+## Using Python
+Set up your Python programming environment.
+
+* Install Python3. On GNU/Linux you can use your favorite package manager to install Python, e.g., on Debian/Ubuntu install the package _python3_.
+* On GNU/Linux use your favorite package manager to install the Python dependencies, e.g., on Debian/Ubuntu install the packages _python3-opencv, python3-serial, python3-matplotlib, python3-numpy_.
+  
+  Or, use _pip_ to install the dependencies:
+```
+  $ pip install opencv-python pyserial matplotlib numpy
+```
+* Inspect the Python examples in the directory _"examples/python"_.
+
 ## Known Issues
 * The Arduino UNO R4 WiFi uses the internal oscillator instead of an external crystal as a clock source for the Real Time Clock (RTC). This causes significant time drift.

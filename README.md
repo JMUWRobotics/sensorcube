@@ -102,5 +102,33 @@ Set up your C++ programming environment.
   ```
 * Inspect the C++ examples in the directory [_examples/cpp/src_](examples/cpp/src).
 
+## Tools
+* Record messages:
+  ```
+  python3 recordMessages.py -m <message_type> -f <file_name>
+  ```
+  Example record _imu_raw_ data to file _imu_raw.json_:
+  ```
+  python3 recordMessages.py -m imu_raw -f imu_raw.json
+  ```
+* Print messages:
+  Without the file option _-f_ you can also use the record tool to print the messages.
+  ```
+  python3 recordMessages.py -m <message_type>
+  ```
+* Plot raw IMU data:
+  ```
+  python3 showIMU.py
+  ```
+* Capture Images:
+  ```
+  python3 captureCamera.py
+  ```
+  Press spacebar to capture images and ESC to quit.
+
+* Update Real Time Clock:
+  ```
+  python3 setTime.py
+  ```
 ## Known Issues
 * The Arduino UNO R4 WiFi uses the internal oscillator instead of an external crystal as a clock source for the Real Time Clock (RTC). This causes significant time drift.

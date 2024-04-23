@@ -37,7 +37,7 @@ In the root directory is a configuration file _"config.json"_. Please make sure 
 
 The Python examples load this file relative to the _*.py_ source files. For the C++ examples CMake sets the path relative to the project source dir and bakes the path in the executables.
 
-## Using Python
+## Using the Sensor Cube with Python
 Set up your Python programming environment.
 
 * Install Python3. On GNU/Linux you can use your favorite package manager to install Python, e.g., on Debian/Ubuntu install the package _python3_.
@@ -49,7 +49,7 @@ Set up your Python programming environment.
 ```
 * Inspect the Python examples in the directory _"examples/python"_.
 
-## Using C++
+## Using the Sensor Cube with C++
 Set up your C++ programming environment.
 
 * Set up your C++ programming environment and compiler, e.g., _GCC_ on GNU/Linux or _Visual Studio/MSVC_ on Windows.

@@ -15,5 +15,11 @@ Documentation, design and example code for the Sensor Cube used for teaching at 
 * Red Line Laser 650nm (https://www.laserfuchs.de/p/70134933)
 * Calibration Board
 
+## Datasheets
+* U-blox NEO-M8T timing GNSS module: https://www.u-blox.com/sites/default/files/documents/NEO-LEA-M8T-FW3_DataSheet_UBX-15025193.pdf
+* ST VL53L3CX Time-of-Flight multi-target distance sensor: https://www.st.com/resource/en/datasheet/vl53l3cx.pdf
+* Bosch BMP280 pressure and temperature sensor: https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp280-ds001.pdf
+* Bosch BNO055 Inertial Measurement Unit: https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bno055-ds000.pdf
+
 ## Known Issues
 * The Arduino UNO R4 WiFi uses the internal oscillator instead of an external crystal as a clock source for the Real Time Clock (RTC). This causes significant time drift.

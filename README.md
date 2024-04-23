@@ -132,3 +132,4 @@ Set up your C++ programming environment.
   ```
 ## Known Issues
 * The Arduino UNO R4 WiFi uses the internal oscillator instead of an external crystal as a clock source for the Real Time Clock (RTC). This causes significant time drift.
+* The stereo camera can be slow with _OpenCV_ Video Capture. The default configuration uses a stereo image size of only 1600 x 800.

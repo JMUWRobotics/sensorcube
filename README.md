@@ -49,5 +49,49 @@ Set up your Python programming environment.
 ```
 * Inspect the Python examples in the directory _"examples/python"_.
 
+## Using C++
+Set up your C++ programming environment.
+
+* Set up your C++ programming environment and compiler, e.g., _GCC_ on GNU/Linux or _Visual Studio/MSVC_ on Windows.
+* Install the _OpenCV_ library.
+
+  For image processing we will be using the _OpenCV_ library which is available	across platforms. It is recommended to use version 4.5.4. However, any version newer than 4.4.0 should be fine to complete the assignments.
+
+  Please refer to: https://docs.opencv.org/4.5.4/df/d65/tutorial_table_of_content_introduction.html
+
+  GNU/Linux: Use your favorite package manager to install OpenCV, e.g., on Debian/Ubuntu install the package _libopencv-dev_.
+
+  Windows: You can download the _OpenCV_ binary release from https://opencv.org/releases/. You need to add the path to the unpacked directory _"opencv/build/x64/vc16/bin"_ to your System Path, such that the _OpenCV_ DLLs are found.
+
+	Of course it is also possible to compile OpenCV yourself or use other ways for the installation as listed in the _OpenCV_ documentation.
+* Install the _CMake_ build system.
+
+  GNU/Linux: Use your favorite package manager to install _CMake_, e.g., on Debian/Ubuntu install the package _cmake_.
+
+  Windows: You can download _CMake_ from https://cmake.org/download/.
+  
+* All other library dependencies (_Eigen3_, _Nlohmann JSON_, and _Asio_) are automatically downloaded by _CMake_. Inspect the _"examples/cpp/CMakeLists.txt"_ project file.
+* Build the C++ examples. The recommended way of building a project with _CMake_ is by doing an out-of-source build. This can be done like this:
+```
+  $ cd examples/cpp
+  $ mkdir build && cd build
+  $ cmake ..
+  $ make
+```
+  If _OpenCV_ is not installed in the standard paths, you might need to set the _OpenCV_ directory:
+```
+  $ cmake -DOpenCV_DIR=<Path to directory OpenCVConfig.cmake> ..
+```
+  If you are using the _OpenCV_ binary release on Windows, you need to specify the path to the unpacked directory _"opencv/build/x64/vc16/lib"_.
+
+  Different _CMake_ Generators are available, such as _Unix Makefiles_ or _Ninja_. On Windows CMake can create, for example, _Visual Studio_ project files, _NMake_, or _Unix Makefiles_: https://cmake.org/cmake/help/latest/manual/cmake-generators.7.html
+	
+  For example, on Windows you can run from the Visual Studio developer command prompt:
+```
+  $ cmake -G "NMake Makefiles" ..
+  $ nmake
+```
+* Inspect the C++ examples in the directory _"examples/cpp/src"_.
+
 ## Known Issues
 * The Arduino UNO R4 WiFi uses the internal oscillator instead of an external crystal as a clock source for the Real Time Clock (RTC). This causes significant time drift.

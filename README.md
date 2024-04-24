@@ -40,7 +40,7 @@ The Python examples load this file relative to the _*.py_ source files. For the 
 ## Udev Rules Setup
 On GNU/Linux make sure that you have access rights for the serial device (typically _"/dev/ttyACM[0-9]"_) of the Arduino in the Sensor Cube. On Debian/Ubuntu the device will have access rights for the group _plugdev_. Make sure your user is in the group _plugdev_.
 
-Alternatively, the repository includes a udev rule, which grants read and write access to all users:
+Alternatively, the repository includes a udev rule, which grants read and write access to the device for all users:
 ```
 sudo cp udev/99-sensorcube.rules /etc/udev/rules.d/
 sudo udevadm control --reload-rules

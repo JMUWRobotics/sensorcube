@@ -31,7 +31,7 @@ In the root directory is a configuration file _"config.json"_. Please make sure 
     "serial_baudrate" : 921600,
     "camera_index" : 0,
     "camera_width" : 1600,
-    "camera_height": 800
+    "camera_height": 600
   }
 ```
 
@@ -132,4 +132,4 @@ Set up your C++ programming environment.
   ```
 ## Known Issues
 * The Arduino UNO R4 WiFi uses the internal oscillator instead of an external crystal as a clock source for the Real Time Clock (RTC). This causes significant time drift.
-* The stereo camera can be slow with _OpenCV_ Video Capture. The default configuration uses a stereo image size of only 1600 x 800.
+* The stereo camera can be slow with _OpenCV_ Video Capture. Therefore, the default configuration uses a stereo image size of only 1600 x 600.

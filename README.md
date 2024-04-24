@@ -37,6 +37,15 @@ In the root directory is a configuration file _"config.json"_. Please make sure 
 
 The Python examples load this file relative to the _*.py_ source files. For the C++ examples CMake sets the path relative to the project source dir and bakes the path in the executables.
 
+## Udev Rules Setup
+On GNU/Linux make sure that you have access rights for the serial device (typically _"/dev/ttyACM[0-9]"_) of the Arduino in the Sensor Cube. On Debian/Ubuntu the device will have access rights for the group _plugdev_. Make sure your user is in the group _plugdev_.
+
+Alternatively, the repository includes a udev rule, which grants read and write access to all users:
+```
+sudo cp udev/99-sensorcube.rules /etc/udev/rules.d/
+sudo udevadm control --reload-rules
+```
+
 ## Using the Sensor Cube with Python
 Set up your Python programming environment.
 

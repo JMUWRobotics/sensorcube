@@ -368,7 +368,7 @@ void setup()
     delay(1000);
   }
 
-  Serial1.begin(9600);
+  Serial1.begin(921600);
 
   // start aligned with full seconds
   while (millis() % 1000 != 0) {}

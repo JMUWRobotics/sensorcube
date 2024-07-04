@@ -214,14 +214,14 @@ for i in range(len(ids_all_left)):
             if ids_right[k] == ids_left[j]:
                 if obj is None:
                     if is_opencv47():
-                        obj = board.getChessboardCorners[ids_left[j][0]]
+                        obj = board.getChessboardCorners()[ids_left[j][0]]
                     else:
                         obj = board.chessboardCorners[ids_left[j][0]]
                     pts_left = corners_all_left[i][j]
                     pts_right = corners_all_right[i][k]
                 else:
                     if is_opencv47():
-                        obj = np.vstack((obj, board.getChessboardCorners[ids_left[j][0]]))
+                        obj = np.vstack((obj, board.getChessboardCorners()[ids_left[j][0]]))
                     else:
                         obj = np.vstack((obj, board.chessboardCorners[ids_left[j][0]]))
                     pts_left = np.vstack((pts_left, corners_all_left[i][j]))

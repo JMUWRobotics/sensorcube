@@ -143,3 +143,7 @@ Set up your C++ programming environment.
 ## Known Issues
 * The Arduino UNO R4 WiFi uses the internal oscillator instead of an external crystal as a clock source for the Real Time Clock (RTC). This causes significant time drift.
 * The stereo camera can be slow with _OpenCV_ Video Capture. Therefore, the default configuration uses a stereo image size of only 1600 x 600.
+* OpenCV changed the physical layout (the order of the 2D barcodes) of ChArUco boards in OpenCV 4.6.0.\
+Github issue: https://github.com/opencv/opencv/issues/23152\
+A fix was added in OpenCV 4.8.0 ("board.setLegacyPattern(True)").\
+Therefore, the ChArUco boards in the Sensor Cube boxes cannot be detected with OpenCV versions >= 4.6.0 and < 4.8.0.

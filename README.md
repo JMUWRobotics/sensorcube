@@ -14,6 +14,7 @@ Documentation, design and example code for the Sensor Cube used for teaching at 
   * Bosch BNO055 Inertial Measurement Unit (https://www.bosch-sensortec.com/products/smart-sensor-systems/bno055/, https://docs.arduino.cc/hardware/9-axis-motion-shield/)
 * Red Line Laser 650nm (https://www.laserfuchs.de/p/70134933)
 * Calibration Board
+* Folding Ruler
 
 ## Datasheets
 * U-blox NEO-M8T timing GNSS module: https://www.u-blox.com/sites/default/files/documents/NEO-LEA-M8T-FW3_DataSheet_UBX-15025193.pdf

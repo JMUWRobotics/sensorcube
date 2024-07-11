@@ -19,8 +19,6 @@ def showWebcam():
     fourcc = cv2.VideoWriter_fourcc('B', 'G', 'R', '3')
     cam.set(cv2.CAP_PROP_FOURCC, fourcc)
     
-    seq = 0
-
     if not os.path.isfile("calibration.json"):
         print("No calibration.json file!")
         return

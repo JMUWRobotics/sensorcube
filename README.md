@@ -147,8 +147,7 @@ Set up your C++ programming environment.
 GitHub issue: https://github.com/opencv/opencv/issues/23152
 
 ## Publication
-The following publication talks about some of the design aspects and application of the Sensor Cube for teaching:
+The following publication talks about some of the design aspects and application of the Sensor Cube for teaching: https://doi.org/10.1016/j.ifacol.2024.08.456
 ```
 Bleier, M. (2024). Sensor Cube – A Tool for Hands-on Learning of Sensor Data Processing. IFAC-PapersOnLine, 58(16), 23-28.
-https://doi.org/10.1016/j.ifacol.2024.08.456
 ```

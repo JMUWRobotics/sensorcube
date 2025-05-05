@@ -145,3 +145,10 @@ Set up your C++ programming environment.
 * The stereo camera can be slow with _OpenCV_ Video Capture. Therefore, the default configuration uses a stereo image size of only 1600 x 600.
 * OpenCV changed the physical layout (the order of the 2D barcodes) of ChArUco boards in OpenCV 4.6.0. A fix was added in OpenCV 4.8.0 ("board.setLegacyPattern(True)"). Therefore, the ChArUco boards in the Sensor Cube boxes cannot be detected with OpenCV versions >= 4.6.0 and < 4.8.0.\
 GitHub issue: https://github.com/opencv/opencv/issues/23152
+
+## Publication
+The following publication talks about some of the design aspects and application of the Sensor Cube for teaching:
+```
+Bleier, M. (2024). Sensor Cube – A Tool for Hands-on Learning of Sensor Data Processing. IFAC-PapersOnLine, 58(16), 23-28.
+https://doi.org/10.1016/j.ifacol.2024.08.456
+```

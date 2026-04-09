@@ -24,8 +24,8 @@ int main(int argc, char *argv[])
     cap.open(config["camera_index"].get<int>(), apiPreference);
     cap.set(cv::CAP_PROP_FRAME_WIDTH, config["camera_width"].get<int>());
     cap.set(cv::CAP_PROP_FRAME_HEIGHT, config["camera_height"].get<int>());
-    int fourcc = cv::VideoWriter::fourcc('B', 'G', 'R', '3');
-    cap.set(cv::CAP_PROP_FOURCC, fourcc);
+    //int fourcc = cv::VideoWriter::fourcc('B', 'G', 'R', '3');
+    //cap.set(cv::CAP_PROP_FOURCC, fourcc);
 
     if (!cap.isOpened()) {
         std::cerr << "Error: Unable to open camera!" << std::endl;
@@ -48,6 +48,11 @@ int main(int argc, char *argv[])
         // esc to quit
         if (cv::waitKey(1) == 27) {
             break;
+        }
+
+	// exit on window close
+	if (cv::getWindowProperty("Stereo Image", cv::WND_PROP_VISIBLE) < 1) {
+	    break;
         }
     }
     

@@ -9,9 +9,9 @@ import sys
 
 (major, minor, _) = cv2.__version__.split(".")
 
-if not (int(major) >= 4 and int(minor) >= 7):
+if not (int(major) >= 4 and int(minor) >= 8):
     print("OpenCV " + str(cv2.__version__) + " detected.")
-    print("This Python program requires OpenCV >= 4.7.0.")
+    print("This Python program requires OpenCV >= 4.8.0.")
     sys.exit(1)
 
 parser = argparse.ArgumentParser(description='Compute camera calibration.')

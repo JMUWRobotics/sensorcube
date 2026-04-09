@@ -77,6 +77,9 @@ def showWebcam():
         key = cv2.waitKey(1)
         if key == 27: 
             break  # esc to quit
+        if cv2.getWindowProperty('Rectified stereo Image with detected blobs', cv2.WND_PROP_VISIBLE) < 1:
+            break
+
     cv2.destroyAllWindows()
 
 

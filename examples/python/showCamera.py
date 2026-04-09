@@ -33,6 +33,8 @@ def showWebcam():
         key = cv2.waitKey(1)
         if key == 27: # esc to quit
             break
+        if cv2.getWindowProperty('Stereo Image', cv2.WND_PROP_VISIBLE) < 1:
+            break
 
     cv2.destroyAllWindows()
 

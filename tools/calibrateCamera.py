@@ -5,15 +5,14 @@ import argparse
 import glob
 import os.path
 import click
+import sys
 
-def is_opencv47():
-    (major, minor, _) = cv2.__version__.split(".")
-    return int(major) >= 4 and int(minor) >= 7
+(major, minor, _) = cv2.__version__.split(".")
 
-if is_opencv47():
-    print("OpenCV >= 4.7.0 detected. Using new API.")
-else:
-    print("OpenCV < 4.7.0 detected. Using old API.")
+if not (int(major) >= 4 and int(minor) >= 7):
+    print("OpenCV " + str(cv2.__version__) + " detected.")
+    print("This Python program requires OpenCV >= 4.7.0.")
+    sys.exit(1)
 
 parser = argparse.ArgumentParser(description='Compute camera calibration.')
 parser.add_argument(dest='folder', type=str, help='Folder with stereo***.png images.')
@@ -24,22 +23,13 @@ CHARUCOBOARD_COLCOUNT = 9
 CHARUCOBOARD_SQUARE_LENGTH = 0.030
 CHARUCOBOARD_MARKER_SIZE = 0.022
 
-if is_opencv47():
-    dictionary = cv2.aruco.getPredefinedDictionary(aruco.DICT_6X6_1000)
-    board = cv2.aruco.CharucoBoard((CHARUCOBOARD_COLCOUNT, CHARUCOBOARD_ROWCOUNT), CHARUCOBOARD_SQUARE_LENGTH, CHARUCOBOARD_MARKER_SIZE, dictionary)
-    board.setLegacyPattern(True)
-    detctorparams = cv2.aruco.DetectorParameters()
-    charucoparams = cv2.aruco.CharucoParameters()
-    charucoparams.tryRefineMarkers = True
-    detector = cv2.aruco.CharucoDetector(board, charucoparams, detctorparams)
-else:
-    dictionary = aruco.Dictionary_get(aruco.DICT_6X6_1000)
-    board = aruco.CharucoBoard_create(
-        squaresX=CHARUCOBOARD_COLCOUNT,
-        squaresY=CHARUCOBOARD_ROWCOUNT,
-        squareLength=0.030,
-        markerLength=0.022,
-        dictionary=dictionary)
+dictionary = cv2.aruco.getPredefinedDictionary(aruco.DICT_6X6_1000)
+board = cv2.aruco.CharucoBoard((CHARUCOBOARD_COLCOUNT, CHARUCOBOARD_ROWCOUNT), CHARUCOBOARD_SQUARE_LENGTH, CHARUCOBOARD_MARKER_SIZE, dictionary)
+board.setLegacyPattern(True)
+detctorparams = cv2.aruco.DetectorParameters()
+charucoparams = cv2.aruco.CharucoParameters()
+charucoparams.tryRefineMarkers = True
+detector = cv2.aruco.CharucoDetector(board, charucoparams, detctorparams)
 
 images = glob.glob(args.folder + '/stereo*.png')
 
@@ -67,17 +57,8 @@ for iname in images:
     if len(image_left) < 1:
         image_left = left.copy()
 
-    if is_opencv47():
-        charuco_corners, charuco_ids, corners, ids = detector.detectBoard(leftGray)
-    else:
-        corners, ids, _ = aruco.detectMarkers(
-            image=leftGray,
-            dictionary=dictionary)
-        response, charuco_corners, charuco_ids = aruco.interpolateCornersCharuco(
-            markerCorners=corners,
-            markerIds=ids,
-            image=leftGray,
-            board=board)
+    charuco_corners, charuco_ids, corners, ids = detector.detectBoard(leftGray)
+
     left = aruco.drawDetectedMarkers(
         image=left, 
         corners=corners)
@@ -98,17 +79,8 @@ for iname in images:
     if len(image_right) < 1:
         image_right = right.copy()
 
-    if is_opencv47():
-        charuco_corners, charuco_ids, corners, ids = detector.detectBoard(rightGray)
-    else:
-        corners, ids, _ = aruco.detectMarkers(
-            image=rightGray,
-            dictionary=dictionary)
-        response, charuco_corners, charuco_ids = aruco.interpolateCornersCharuco(
-            markerCorners=corners,
-            markerIds=ids,
-            image=rightGray,
-            board=board)
+    charuco_corners, charuco_ids, corners, ids = detector.detectBoard(rightGray)
+
     right = aruco.drawDetectedMarkers(
         image=right, 
         corners=corners)
@@ -213,17 +185,11 @@ for i in range(len(ids_all_left)):
         for k in range(len(ids_right)):
             if ids_right[k] == ids_left[j]:
                 if obj is None:
-                    if is_opencv47():
-                        obj = board.getChessboardCorners()[ids_left[j][0]]
-                    else:
-                        obj = board.chessboardCorners[ids_left[j][0]]
+                    obj = board.getChessboardCorners()[ids_left[j][0]]
                     pts_left = corners_all_left[i][j]
                     pts_right = corners_all_right[i][k]
                 else:
-                    if is_opencv47():
-                        obj = np.vstack((obj, board.getChessboardCorners()[ids_left[j][0]]))
-                    else:
-                        obj = np.vstack((obj, board.chessboardCorners[ids_left[j][0]]))
+                    obj = np.vstack((obj, board.getChessboardCorners()[ids_left[j][0]]))
                     pts_left = np.vstack((pts_left, corners_all_left[i][j]))
                     pts_right = np.vstack((pts_right, corners_all_right[i][k]))
     if len(obj) > 4:

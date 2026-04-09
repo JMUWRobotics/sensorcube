@@ -1,5 +1,5 @@
 {
-    "serial_port" : "/dev/ttyACM0",
+    "serial_port" : "/dev/sensorcube",
     "serial_baudrate" : 921600,
     "camera_index" : 0,
     "camera_width" : 1600,

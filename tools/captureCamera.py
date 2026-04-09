@@ -33,6 +33,8 @@ def showWebcam():
             print("Saving image " + "\"stereo" + str(fileSeq).zfill(3) + ".png\".")
             cv2.imwrite("stereo" + str(fileSeq).zfill(3) + ".png", img)
             fileSeq = fileSeq + 1
+        if cv2.getWindowProperty('Stereo Image', cv2.WND_PROP_VISIBLE) < 1:
+            break
 
     cv2.destroyAllWindows()
 

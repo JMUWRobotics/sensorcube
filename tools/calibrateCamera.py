@@ -241,7 +241,12 @@ proportion = max(displayImg.shape) / 1000.0
 displayImg = cv2.resize(displayImg, (int(displayImg.shape[1]/proportion), int(displayImg.shape[0]/proportion)))
 
 cv2.imshow('Original and stereo rectified image', displayImg)
-cv2.waitKey(0)
+while True:
+    if cv2.waitKey(100) != -1:
+        break
+    if (cv2.getWindowProperty('Original and stereo rectified image', cv2.WND_PROP_VISIBLE) < 1) and (cv2.getWindowProperty('Original and undistorted image', cv2.WND_PROP_VISIBLE) < 1):
+        break
+cv2.destroyAllWindows()
 
 if fs:
     fs.release()
